@@ -7,6 +7,8 @@ Infrastructure and source for my cloud support portfolio site, deployed entirely
 Deploy order matters — each depends on the one before it:
 
 1. `PortfolioOidcStack` — GitHub OIDC provider + two IAM roles (`github-portfolio-diff`, `github-portfolio-deploy`). Deployed **manually, once, from a workstation** via `bin/oidc.ts`. CI never touches this stack — it must not be able to redeploy the trust policy that authorizes itself.
+
+   The trust policy scopes on the `repository`/`ref`/`event_name` OIDC claims rather than parsing `sub`, because GitHub embeds immutable owner/repo IDs into `sub` by default (`repo:org@123/repo@456:ref:...`) for rename-safety — exact-match `sub` conditions break against that. IAM also hard-requires a *scoped* `sub` or `job_workflow_ref` condition on every OIDC trust policy regardless (a bare `repository` match alone is rejected at the API level), so `sub` is still matched via `StringLike` against both the classic and ID-suffixed forms. See `lib/oidc-stack.ts`.
 2. `PortfolioDataStack` — single DynamoDB table (`portfolio`), on-demand, PITR on, `RemovalPolicy.RETAIN`.
 3. `PortfolioAuthStack` — Cognito user pool, self-signup disabled, MFA required. No users created yet (Phase 3).
 4. `PortfolioApiStack` — HTTP API + a placeholder `/api/health` Lambda, CloudWatch dashboard, $10 billing alarm.
