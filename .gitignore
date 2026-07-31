@@ -1,9 +1,6 @@
 node_modules/
 dist/
 cdk.out/
-*.d.ts
-*.js
-!.eslintrc.js
 .env
 .env.*
 site/dist/
