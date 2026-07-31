@@ -16,7 +16,19 @@ export class OidcStack extends Stack {
     const qualifier = props.cdkQualifier ?? "hnb659fds";
     const account = this.account;
     const region = this.region;
-    const sub = `repo:${props.githubOrg}/${props.githubRepo}`;
+    const repository = `${props.githubOrg}/${props.githubRepo}`;
+    const subBase = `repo:${repository}`;
+
+    // AWS IAM requires every OIDC trust policy to include a *scoped* `sub`
+    // (or `job_workflow_ref`) condition — matching only on custom claims like
+    // `repository`/`ref` is rejected at the API level. GitHub now embeds
+    // immutable owner/repo IDs into `sub` by default (e.g.
+    // `repo:org@123/repo@456:ref:...`) for rename-safety, so both the
+    // classic and ID-suffixed forms are matched here.
+    const subPatterns = (suffix: string) => [
+      `${subBase}:${suffix}`,
+      `repo:${props.githubOrg}@*/${props.githubRepo}@*:${suffix}`,
+    ];
 
     const provider = new iam.OpenIdConnectProvider(this, "GithubOidcProvider", {
       url: "https://token.actions.githubusercontent.com",
@@ -35,9 +47,11 @@ export class OidcStack extends Stack {
       assumedBy: new iam.WebIdentityPrincipal(provider.openIdConnectProviderArn, {
         StringEquals: {
           "token.actions.githubusercontent.com:aud": "sts.amazonaws.com",
+          "token.actions.githubusercontent.com:repository": repository,
+          "token.actions.githubusercontent.com:ref": "refs/heads/main",
         },
         StringLike: {
-          "token.actions.githubusercontent.com:sub": `${sub}:ref:refs/heads/main`,
+          "token.actions.githubusercontent.com:sub": subPatterns("ref:refs/heads/main"),
         },
       }),
       maxSessionDuration: Duration.hours(1),
@@ -60,9 +74,11 @@ export class OidcStack extends Stack {
       assumedBy: new iam.WebIdentityPrincipal(provider.openIdConnectProviderArn, {
         StringEquals: {
           "token.actions.githubusercontent.com:aud": "sts.amazonaws.com",
+          "token.actions.githubusercontent.com:repository": repository,
+          "token.actions.githubusercontent.com:event_name": "pull_request",
         },
         StringLike: {
-          "token.actions.githubusercontent.com:sub": `${sub}:pull_request`,
+          "token.actions.githubusercontent.com:sub": subPatterns("pull_request"),
         },
       }),
       maxSessionDuration: Duration.hours(1),
