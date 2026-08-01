@@ -1,0 +1,35 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Hero from "../components/Hero.astro";
+import SkillsGrid from "../components/SkillsGrid.astro";
+import Evidence from "../components/Evidence.astro";
+import Projects from "../components/Projects.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<Layout
+  title="Zhanbolot Eraliev — Cloud Support Associate candidate"
+  description="AWS-certified cloud support associate candidate, graduating 2028, available Summer 2027. Networking, Linux, and log-driven troubleshooting."
+>
+  <div class="page">
+    <Hero />
+    <SkillsGrid />
+    <Evidence />
+    <Projects />
+    <Footer />
+  </div>
+</Layout>
+
+<style>
+  .page {
+    margin-inline: auto;
+    padding-inline: 1.5rem;
+    max-width: 40rem;
+  }
+
+  @media (min-width: 1024px) {
+    .page {
+      margin-inline-start: 8rem;
+    }
+  }
+</style>

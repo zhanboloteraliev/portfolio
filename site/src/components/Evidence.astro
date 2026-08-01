@@ -1,0 +1,139 @@
+---
+const hooks = [
+  {
+    title: "Packet-level network troubleshooting",
+    detail: "Wireshark, SMTP/DNS/HTTP",
+  },
+  {
+    title: "Log-driven root-cause analysis",
+    detail: "Splunk + SPL, the CloudWatch skillset",
+  },
+  {
+    title: "Linux & web-server administration",
+    detail: "Ubuntu, nginx, Bash, auditd",
+  },
+];
+---
+
+<section id="evidence" class="evidence">
+  <h2>Evidence</h2>
+  <div class="grid">
+    <div class="block">
+      <h3>Technical</h3>
+      <ul>
+        {
+          hooks.map((h) => (
+            <li>
+              <span class="hook-title">{h.title}</span>
+              <span class="hook-detail">{h.detail}</span>
+            </li>
+          ))
+        }
+      </ul>
+      <a href="/resume" class="more">Full breakdown on résumé →</a>
+    </div>
+
+    <div class="block">
+      <h3>Leadership</h3>
+      <p>
+        Co-founder and president of <strong>KurultAI</strong>, a Kyrgyz tech
+        community club I helped start at LWTech. Most recently: 1st place,
+        Polymarket track, QuackHacks 2.0.
+      </p>
+    </div>
+
+    <div class="block">
+      <h3>Customer-facing</h3>
+      <p>
+        Three years at my family's clothing stall in Dordoi Bazaar, Bishkek —
+        reading what a customer actually needed, across a language barrier,
+        with no script to fall back on.
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .evidence {
+    padding-block: 2rem;
+    max-width: 40rem;
+  }
+
+  h2 {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    opacity: 0.55;
+    margin: 0 0 1.25rem;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  @media (min-width: 640px) {
+    .grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .block {
+    border: 1px solid var(--color-rule);
+    border-radius: 0.5rem;
+    background: var(--color-panel);
+    padding: 1.1rem 1.15rem;
+  }
+
+  h3 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 0.9375rem;
+    margin: 0 0 0.75rem;
+    color: var(--color-route);
+  }
+
+  ul {
+    list-style: none;
+    margin: 0 0 0.9rem;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .hook-title {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.35;
+  }
+
+  .hook-detail {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    opacity: 0.6;
+    margin-top: 0.1rem;
+  }
+
+  .block p {
+    font-size: 0.875rem;
+    line-height: 1.55;
+    opacity: 0.85;
+    margin: 0;
+  }
+
+  .more {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-route);
+    text-decoration: none;
+  }
+
+  .more:hover {
+    text-decoration: underline;
+  }
+</style>

@@ -1,0 +1,20 @@
+{
+  "name": "portfolio-site",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "astro": "^7.1.6"
+  },
+  "devDependencies": {
+    "@astrojs/check": "latest",
+    "@tailwindcss/vite": "latest",
+    "tailwindcss": "latest",
+    "typescript": "^5.7.2"
+  }
+}

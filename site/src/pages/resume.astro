@@ -1,0 +1,409 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const codepathBullets = [
+  "Traced a simulated business email compromise to its source IP by analyzing SMTP headers and packet captures in Wireshark — the same protocol-level diagnosis used to resolve DNS, connectivity, and email-delivery issues in production.",
+  "Investigated live indicators of compromise from the SolarWinds and Scattered Spider breaches with SPL correlation searches across proxy and system logs in Splunk — log-driven root-cause analysis that maps directly to CloudWatch and cloud observability tooling.",
+  "Configured nginx and Linux auditd to mitigate an application-layer DoS (Slowloris) and attribute file changes to their originating process — hands-on web-server hardening and Ubuntu system administration.",
+  "Documented and triaged a malware incident end to end in a case-management system using NIST and SANS frameworks — severity classification, threat-intel enrichment (VirusTotal, AbuseIPDB), and escalation, mirroring a support ticket lifecycle.",
+];
+
+const skills = [
+  {
+    name: "Cloud & Infrastructure",
+    items:
+      "AWS (SAA-C03 certified): IAM, EC2, EBS, S3, VPC · Microsoft Azure (AZ-104 in progress) · nginx, load balancing, web server configuration",
+  },
+  {
+    name: "Networking & Troubleshooting",
+    items:
+      "TCP/IP, DNS, DHCP, subnetting/CIDR · packet capture & analysis (Wireshark) · protocol analysis (SMTP, HTTP, FTP) · network monitoring (Netdata)",
+  },
+  {
+    name: "Linux & Systems",
+    items:
+      "Ubuntu administration · Bash scripting · Vim · file integrity monitoring (auditd) · systemd service management",
+  },
+  {
+    name: "Observability & Log Analysis",
+    items:
+      "Splunk (SPL, correlation searches, dashboards) · SIEM investigation · log-driven root-cause analysis · Docker",
+  },
+  {
+    name: "Diagnosis & Support Workflow",
+    items:
+      "systematic root-cause analysis & escalation (NIST, SANS frameworks) · case documentation & triage (Catalyst) · IOC investigation (VirusTotal, AbuseIPDB)",
+  },
+];
+---
+
+<Layout
+  title="Résumé — Zhanbolot Eraliev"
+  description="Résumé for Zhanbolot Eraliev, Cloud Support Associate candidate, AWS-certified, graduating 2028."
+>
+  <div class="page">
+    <header class="masthead">
+      <h1>Zhanbolot &ldquo;John&rdquo; Eraliev</h1>
+      <p class="contact">
+        <span>Woodinville, WA</span>
+        <span aria-hidden="true">&middot;</span>
+        <a href="mailto:ezhanbolot@gmail.com">ezhanbolot@gmail.com</a>
+        <span aria-hidden="true">&middot;</span>
+        <a href="https://github.com/zhanboloteraliev" target="_blank" rel="noopener noreferrer"
+          >GitHub</a
+        >
+        <span aria-hidden="true">&middot;</span>
+        <a
+          href="https://www.linkedin.com/in/zhanbolot-eraliev-317a28173"
+          target="_blank"
+          rel="noopener noreferrer">LinkedIn</a
+        >
+      </p>
+    </header>
+
+    <section>
+      <h2>Education</h2>
+      <div class="entry">
+        <div class="entry-head">
+          <h3>Central Washington University</h3>
+          <span class="when">Fall 2026 – 2028</span>
+        </div>
+        <p>BS, Information Technology &amp; Administrative Management (Lynnwood)</p>
+      </div>
+      <div class="entry">
+        <div class="entry-head">
+          <h3>Lake Washington Institute of Technology</h3>
+          <span class="when">Transferred 2026</span>
+        </div>
+        <p>Computer Science, DTA Associate — Magna Cum Laude, 3.79 GPA</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Certifications</h2>
+      <div class="entry">
+        <div class="entry-head">
+          <h3>
+            <a
+              href="https://www.credly.com/badges/f485fabc-4b43-4383-b4df-69ab72ca26cc"
+              target="_blank"
+              rel="noopener noreferrer">AWS Certified Solutions Architect – Associate</a
+            >
+          </h3>
+          <span class="when status-earned">Earned</span>
+        </div>
+      </div>
+      <div class="entry">
+        <div class="entry-head">
+          <h3>Microsoft Certified: Azure Administrator Associate (AZ-104)</h3>
+          <span class="when status-progress">In progress</span>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>CodePath CYB102 Fellowship</h2>
+      <p class="entry-meta">Cybersecurity incident response · June – August 2026</p>
+      <ul class="bullets">
+        {codepathBullets.map((b) => <li>{b}</li>)}
+      </ul>
+    </section>
+
+    <section>
+      <h2>Skills</h2>
+      <dl>
+        {
+          skills.map((s) => (
+            <div class="row">
+              <dt>{s.name}</dt>
+              <dd>{s.items}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </section>
+
+    <section>
+      <h2>Leadership</h2>
+      <div class="entry">
+        <div class="entry-head">
+          <h3>KurultAI — Co-founder &amp; President</h3>
+        </div>
+        <p>
+          Kyrgyz tech community club, founded at LWTech. 1st place, Polymarket
+          track, QuackHacks 2.0 (Nov 2025).
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Customer-Facing Experience</h2>
+      <div class="entry">
+        <div class="entry-head">
+          <h3>Family Clothing Business</h3>
+          <span class="when">2020 – 2023</span>
+        </div>
+        <p>
+          Dordoi Bazaar, Bishkek. Three years reading what a customer actually
+          needed, across a language barrier, with no script to fall back on.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Projects</h2>
+      <div class="entry">
+        <div class="entry-head">
+          <h3>Poly Predictor Kit</h3>
+          <span class="when status-earned">Winner — QuackHacks 2.0</span>
+        </div>
+        <p>
+          AI toolkit for reading Polymarket risk: a Gemini-powered market
+          summary, a scikit-learn sentiment classifier, and a lopsided-risk
+          detector. I built the Chrome extension frontend (Manifest V3) —
+          popup UI and logic that pulls the active market and renders the
+          risk analysis.
+        </p>
+        <p class="links">
+          <a href="https://devpost.com/software/poly-predictor-kit" target="_blank" rel="noopener noreferrer"
+            >Devpost</a
+          >
+          <span class="sep">·</span>
+          <a
+            href="https://github.com/raimbekalish/Poly_Predictor_Kit"
+            target="_blank"
+            rel="noopener noreferrer">GitHub</a
+          >
+        </p>
+      </div>
+      <div class="entry">
+        <div class="entry-head">
+          <h3>Visual Novel Creator</h3>
+          <span class="when">CodeDay Fall 2025, Seattle</span>
+        </div>
+        <p>
+          AI visual-novel generator built in Ren'Py: story via the Gemini
+          API, scene art via Stability AI. I wrote the scene-processing
+          pipeline that parses generated story JSON into per-scene image
+          prompts and batch-generates art for each scene.
+        </p>
+        <p class="links">
+          <a
+            href="https://showcase.codeday.org/project/cmhgqspw91903j5my04z26yk6"
+            target="_blank"
+            rel="noopener noreferrer">Showcase</a
+          >
+          <span class="sep">·</span>
+          <a
+            href="https://github.com/Vimpel-O-O/AI_Visual_Novel_Creator"
+            target="_blank"
+            rel="noopener noreferrer">GitHub</a
+          >
+        </p>
+      </div>
+      <div class="entry">
+        <div class="entry-head">
+          <h3>Bilimdos</h3>
+          <span class="when status-progress">Designing</span>
+        </div>
+        <p>An ОРТ test-prep platform for Kyrgyzstan.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Languages</h2>
+      <p>Kyrgyz · Russian · English</p>
+    </section>
+  </div>
+</Layout>
+
+<style>
+  .page {
+    margin-inline: auto;
+    padding-inline: 1.5rem;
+    padding-block: 3rem 4rem;
+    max-width: 40rem;
+  }
+
+  @media (min-width: 1024px) {
+    .page {
+      margin-inline-start: 8rem;
+    }
+  }
+
+  .masthead {
+    margin-bottom: 2.5rem;
+  }
+
+  .masthead h1 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(1.5rem, 5vw, 2rem);
+    margin: 0 0 0.5rem;
+  }
+
+  .contact {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    line-height: 1.6;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    overflow-wrap: anywhere;
+  }
+
+  /* Opacity is scoped to plain text, not the whole line — applying it to
+     the container would also dim the links' composited contrast below
+     WCAG AA against the dark background. */
+  .contact > span {
+    opacity: 0.75;
+  }
+
+  .contact a {
+    color: var(--color-route);
+    text-decoration: none;
+  }
+
+  .contact a:hover {
+    text-decoration: underline;
+  }
+
+  section {
+    margin-bottom: 2.25rem;
+  }
+
+  h2 {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    opacity: 0.55;
+    margin: 0 0 1rem;
+    border-bottom: 1px solid var(--color-rule);
+    padding-bottom: 0.5rem;
+  }
+
+  .entry {
+    margin-bottom: 1.1rem;
+  }
+
+  .entry:last-child {
+    margin-bottom: 0;
+  }
+
+  .entry-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin-bottom: 0.25rem;
+  }
+
+  h3 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 0.9375rem;
+    margin: 0;
+  }
+
+  h3 a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid var(--color-rule);
+  }
+
+  h3 a:hover {
+    border-color: var(--color-route);
+    color: var(--color-route);
+  }
+
+  .when {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    opacity: 0.6;
+    white-space: nowrap;
+  }
+
+  .status-earned {
+    color: var(--color-relay);
+    opacity: 1;
+  }
+
+  .status-progress {
+    color: var(--color-flare);
+    opacity: 1;
+  }
+
+  .entry-meta {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    opacity: 0.6;
+    margin: -0.5rem 0 1rem;
+  }
+
+  section p {
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    opacity: 0.85;
+    margin: 0;
+  }
+
+  .bullets {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+
+  .bullets li {
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    opacity: 0.85;
+    padding-left: 1rem;
+    border-left: 2px solid var(--color-rule);
+  }
+
+  dl {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+
+  .row dt {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 0.875rem;
+    margin: 0 0 0.2rem;
+  }
+
+  .row dd {
+    margin: 0;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    opacity: 0.8;
+  }
+
+  .links {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    margin-top: 0.4rem !important;
+  }
+
+  .links a {
+    color: var(--color-route);
+    text-decoration: none;
+  }
+
+  .links a:hover {
+    text-decoration: underline;
+  }
+
+  .sep {
+    opacity: 0.4;
+    margin: 0 0.4rem;
+  }
+</style>

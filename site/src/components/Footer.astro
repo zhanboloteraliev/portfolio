@@ -1,0 +1,69 @@
+---
+const links = [
+  { label: "Résumé", href: "/resume" },
+  { label: "Email", href: "mailto:ezhanbolot@gmail.com" },
+  { label: "GitHub", href: "https://github.com/zhanboloteraliev" },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/zhanbolot-eraliev-317a28173",
+  },
+];
+---
+
+<footer class="footer">
+  <nav aria-label="Contact">
+    <ul>
+      {
+        links.map((l) => (
+          <li>
+            <a href={l.href} target={l.href.startsWith("http") ? "_blank" : undefined} rel={l.href.startsWith("http") ? "noopener noreferrer" : undefined}>
+              {l.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+  <p class="languages">Kyrgyz · Russian · English</p>
+</footer>
+
+<style>
+  .footer {
+    max-width: 40rem;
+    padding-block: 2.5rem 3rem;
+    border-top: 1px solid var(--color-rule);
+    margin-top: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+  }
+
+  nav a {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    color: var(--color-route);
+    text-decoration: none;
+  }
+
+  nav a:hover {
+    text-decoration: underline;
+  }
+
+  .languages {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    opacity: 0.55;
+    margin: 0;
+  }
+</style>

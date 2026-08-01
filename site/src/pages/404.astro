@@ -1,0 +1,53 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="404 — Zhanbolot Eraliev" description="Page not found." noindex>
+  <div class="page">
+    <p class="code">404</p>
+    <h1>Page not found</h1>
+    <a href="/">Back to eraliev.com →</a>
+  </div>
+</Layout>
+
+<style>
+  .page {
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding-inline: 1.5rem;
+    max-width: 40rem;
+    margin-inline: auto;
+  }
+
+  @media (min-width: 1024px) {
+    .page {
+      margin-inline-start: 8rem;
+    }
+  }
+
+  .code {
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    color: var(--color-flare);
+    margin: 0 0 0.5rem;
+  }
+
+  h1 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.5rem;
+    margin: 0 0 1.25rem;
+  }
+
+  a {
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    color: var(--color-route);
+    text-decoration: none;
+    border-bottom: 1.5px solid var(--color-route);
+    padding-bottom: 0.15rem;
+  }
+</style>

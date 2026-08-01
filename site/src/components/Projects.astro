@@ -1,0 +1,142 @@
+---
+const projects = [
+  {
+    title: "Poly Predictor Kit",
+    status: "Winner — QuackHacks 2.0",
+    description:
+      "I built the Chrome extension for an AI toolkit that scores Polymarket risk — reads market sentiment and flags lopsided-risk bets.",
+    links: [
+      { label: "Devpost", href: "https://devpost.com/software/poly-predictor-kit" },
+      { label: "GitHub", href: "https://github.com/raimbekalish/Poly_Predictor_Kit" },
+    ],
+  },
+  {
+    title: "Visual Novel Creator",
+    status: "CodeDay Fall 2025",
+    description:
+      "I built the scene-image generation pipeline for an AI visual-novel generator written in Ren'Py.",
+    links: [
+      {
+        label: "Showcase",
+        href: "https://showcase.codeday.org/project/cmhgqspw91903j5my04z26yk6",
+      },
+      { label: "GitHub", href: "https://github.com/Vimpel-O-O/AI_Visual_Novel_Creator" },
+    ],
+  },
+  {
+    title: "Bilimdos",
+    status: "Designing",
+    description: "An ОРТ test-prep platform for Kyrgyzstan.",
+    links: [],
+  },
+];
+---
+
+<section id="projects" class="projects">
+  <h2>Projects</h2>
+  <ul>
+    {
+      projects.map((p) => (
+        <li>
+          <div class="head">
+            <h3>{p.title}</h3>
+            <span class="status">{p.status}</span>
+          </div>
+          <p>{p.description}</p>
+          {p.links.length > 0 && (
+            <div class="links">
+              {p.links.map((l, i) => (
+                <>
+                  {i > 0 && <span class="sep">·</span>}
+                  <a href={l.href} target="_blank" rel="noopener noreferrer">
+                    {l.label}
+                  </a>
+                </>
+              ))}
+            </div>
+          )}
+        </li>
+      ))
+    }
+  </ul>
+</section>
+
+<style>
+  .projects {
+    padding-block: 2rem;
+    max-width: 40rem;
+  }
+
+  h2 {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    opacity: 0.55;
+    margin: 0 0 1.25rem;
+  }
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  li {
+    border-top: 1px solid var(--color-rule);
+    padding-top: 1.1rem;
+  }
+
+  .head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.6rem;
+    margin-bottom: 0.35rem;
+  }
+
+  h3 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1rem;
+    margin: 0;
+  }
+
+  .status {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--color-relay);
+    opacity: 0.9;
+  }
+
+  li p {
+    font-size: 0.9375rem;
+    line-height: 1.55;
+    opacity: 0.85;
+    margin: 0 0 0.5rem;
+  }
+
+  .links {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+  }
+
+  .links a {
+    color: var(--color-route);
+    text-decoration: none;
+  }
+
+  .links a:hover {
+    text-decoration: underline;
+  }
+
+  .sep {
+    opacity: 0.4;
+    margin: 0 0.4rem;
+  }
+</style>
