@@ -129,6 +129,15 @@ export class SiteStack extends Stack {
           responsePagePath: "/404.html",
           ttl: Duration.minutes(5),
         },
+        {
+          // The bucket policy grants GetObject only, not ListBucket, so S3
+          // returns 403 (not 404) for a missing key — this maps that case
+          // to the same friendly page, still as an HTTP 404 to the client.
+          httpStatus: 403,
+          responseHttpStatus: 404,
+          responsePagePath: "/404.html",
+          ttl: Duration.minutes(5),
+        },
       ],
     });
 
