@@ -82,9 +82,9 @@ export class SiteStack extends Stack {
       }
     );
 
-    const wwwRedirect = new cloudfront.Function(this, "WwwRedirect", {
+    const viewerRequest = new cloudfront.Function(this, "ViewerRequest", {
       code: cloudfront.FunctionCode.fromFile({
-        filePath: path.join(__dirname, "cloudfront", "www-redirect.js"),
+        filePath: path.join(__dirname, "cloudfront", "viewer-request.js"),
       }),
       runtime: cloudfront.FunctionRuntime.JS_2_0,
     });
@@ -106,7 +106,7 @@ export class SiteStack extends Stack {
         responseHeadersPolicy: securityHeaders,
         functionAssociations: [
           {
-            function: wwwRedirect,
+            function: viewerRequest,
             eventType: cloudfront.FunctionEventType.VIEWER_REQUEST,
           },
         ],
