@@ -8,28 +8,13 @@
       <span class="prompt">$</span>
       <span class="cmd" data-typewriter>whoami</span><span class="cursor"></span>
     </p>
-    <h1 class="terminal-line output" data-typewriter-output>
+    <h1 class="terminal-line output">
       Zhanbolot &ldquo;John&rdquo; Eraliev
       <span class="loc">Woodinville, WA</span>
     </h1>
   </div>
 
-  <script is:inline>
-    (function () {
-      var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      var cmdEl = document.querySelector("[data-typewriter]");
-      if (!cmdEl || reduceMotion) return;
-
-      var fullText = cmdEl.textContent;
-      cmdEl.textContent = "";
-      var i = 0;
-      var interval = setInterval(function () {
-        cmdEl.textContent += fullText[i];
-        i++;
-        if (i >= fullText.length) clearInterval(interval);
-      }, 75);
-    })();
-  </script>
+  <script is:inline src="/scripts/whoami.js" defer></script>
 
   <p class="reveal role" style="--delay:1">
     Cloud Support Associate &mdash; Summer 2027 internship
