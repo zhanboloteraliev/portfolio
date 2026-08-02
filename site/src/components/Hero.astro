@@ -2,13 +2,40 @@
 ---
 
 <section id="profile" class="hero">
-  <p class="reveal kicker" style="--delay:0">Woodinville, WA</p>
-  <h1 class="reveal" style="--delay:0">Zhanbolot &ldquo;John&rdquo; Eraliev</h1>
+  <div class="reveal terminal" style="--delay:0">
+    <div class="terminal-chrome" aria-hidden="true"><span></span><span></span><span></span></div>
+    <p class="terminal-line">
+      <span class="prompt">$</span>
+      <span class="cmd" data-typewriter>whoami</span><span class="cursor"></span>
+    </p>
+    <h1 class="terminal-line output" data-typewriter-output>
+      Zhanbolot &ldquo;John&rdquo; Eraliev
+      <span class="loc">Woodinville, WA</span>
+    </h1>
+  </div>
+
+  <script is:inline>
+    (function () {
+      var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      var cmdEl = document.querySelector("[data-typewriter]");
+      if (!cmdEl || reduceMotion) return;
+
+      var fullText = cmdEl.textContent;
+      cmdEl.textContent = "";
+      var i = 0;
+      var interval = setInterval(function () {
+        cmdEl.textContent += fullText[i];
+        i++;
+        if (i >= fullText.length) clearInterval(interval);
+      }, 75);
+    })();
+  </script>
+
   <p class="reveal role" style="--delay:1">
     Cloud Support Associate &mdash; Summer 2027 internship
   </p>
   <p class="reveal credentials" style="--delay:2">
-    AWS Certified Solutions Architect &ndash; Associate. BS in IT Management,
+    AWS Certified Solutions Architect &ndash; Associate. BS Computer Science,
     graduating 2028.
   </p>
   <p class="reveal tagline" style="--delay:2">
@@ -35,10 +62,6 @@
         <span class="sr-only">— verify on Credly (opens in new tab)</span>
       </span>
     </a>
-    <span class="az-badge">
-      <span class="status status-progress">In progress</span>
-      AZ-104 &middot; Azure Administrator Associate
-    </span>
   </div>
 
   <a class="reveal cta" style="--delay:4" href="/resume">View résumé →</a>
@@ -50,13 +73,82 @@
     max-width: 40rem;
   }
 
-  .kicker {
+  .terminal {
+    background: #0d141b;
+    border: 1px solid #24303c;
+    border-radius: 0.6rem;
+    padding: 1rem 1.25rem 1.25rem;
+    margin-bottom: 1.75rem;
+    box-shadow: 0 8px 30px -12px rgb(0 0 0 / 0.35);
+  }
+
+  .terminal-chrome {
+    display: flex;
+    gap: 0.4rem;
+    margin-bottom: 0.9rem;
+  }
+
+  .terminal-chrome span {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #24303c;
+  }
+
+  .terminal-line {
     font-family: var(--font-mono);
+    margin: 0;
+  }
+
+  .terminal-line.output {
+    margin-top: 0.6rem;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(1.5rem, 5.5vw, 2.125rem);
+    line-height: 1.15;
+    color: #e6edf4;
+  }
+
+  .prompt {
+    color: #3fbfa5;
+    font-size: 0.9375rem;
+  }
+
+  .cmd {
+    color: #e6edf4;
+    font-size: 0.9375rem;
+  }
+
+  .cursor {
+    display: inline-block;
+    width: 0.5em;
+    height: 1em;
+    margin-left: 0.15em;
+    background: #6e9bff;
+    vertical-align: text-bottom;
+    animation: blink 1s step-end infinite;
+  }
+
+  .loc {
+    display: block;
+    font-family: var(--font-mono);
+    font-weight: 400;
     font-size: 0.75rem;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
-    opacity: 0.6;
-    margin-bottom: 0.5rem;
+    color: #7d8ba0;
+    margin-top: 0.5rem;
+  }
+
+  @keyframes blink {
+    0%,
+    50% {
+      opacity: 1;
+    }
+    50.01%,
+    100% {
+      opacity: 0;
+    }
   }
 
   h1 {
@@ -118,20 +210,13 @@
     height: 40px;
   }
 
-  .aws-badge-text,
-  .az-badge {
+  .aws-badge-text {
     display: flex;
     flex-direction: column;
     gap: 0.15rem;
     font-family: var(--font-mono);
     font-size: 0.75rem;
     line-height: 1.3;
-  }
-
-  .az-badge {
-    padding: 0.35rem 0.75rem;
-    border: 1px solid var(--color-rule);
-    border-radius: 0.5rem;
   }
 
   .status {
@@ -156,13 +241,6 @@
   }
   .status-earned::before {
     background: var(--color-relay);
-  }
-
-  .status-progress {
-    color: var(--color-flare);
-  }
-  .status-progress::before {
-    background: var(--color-flare);
   }
 
   .cta {

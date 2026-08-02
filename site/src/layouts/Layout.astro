@@ -1,5 +1,4 @@
 ---
-import RailNav from "../components/RailNav.astro";
 import "../styles/global.css";
 
 interface Props {
@@ -48,7 +47,6 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
   </head>
   <body>
     <a href="#main" class="skip-link">Skip to content</a>
-    <RailNav />
     <main id="main">
       <slot />
     </main>

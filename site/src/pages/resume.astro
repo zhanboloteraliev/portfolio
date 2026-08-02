@@ -65,10 +65,13 @@ const skills = [
       <h2>Education</h2>
       <div class="entry">
         <div class="entry-head">
-          <h3>Central Washington University</h3>
+          <span class="org">
+            <img src="/assets/badges/cwu.png" alt="" width="28" height="28" class="org-icon" />
+            <h3>Central Washington University</h3>
+          </span>
           <span class="when">Fall 2026 – 2028</span>
         </div>
-        <p>BS, Information Technology &amp; Administrative Management (Lynnwood)</p>
+        <p>BS, Computer Science (Lynnwood)</p>
       </div>
       <div class="entry">
         <div class="entry-head">
@@ -225,12 +228,6 @@ const skills = [
     max-width: 40rem;
   }
 
-  @media (min-width: 1024px) {
-    .page {
-      margin-inline-start: 8rem;
-    }
-  }
-
   .masthead {
     margin-bottom: 2.5rem;
   }
@@ -299,6 +296,17 @@ const skills = [
     justify-content: space-between;
     gap: 0.5rem;
     margin-bottom: 0.25rem;
+  }
+
+  .org {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .org-icon {
+    border-radius: 0.25rem;
+    flex-shrink: 0;
   }
 
   h3 {
