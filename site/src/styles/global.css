@@ -15,20 +15,8 @@
   --font-mono: "IBM Plex Mono", ui-monospace, "Cascadia Code", monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-ink: #e6edf4;
-    --color-paper: #0d141b;
-    --color-panel: #131c25;
-    --color-rule: #24303c;
-    --color-route: #6e9bff;
-    --color-relay: #3fbfa5;
-    --color-flare: #e0904a;
-  }
-}
-
 html {
-  color-scheme: light dark;
+  color-scheme: light;
 }
 
 body {
