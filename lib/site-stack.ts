@@ -168,9 +168,38 @@ export class SiteStack extends Stack {
       ),
     });
 
-    new s3deploy.BucketDeployment(this, "DeploySite", {
-      sources: [s3deploy.Source.asset(path.join(__dirname, "..", "site", "dist"))],
+    const siteAsset = s3deploy.Source.asset(path.join(__dirname, "..", "site", "dist"));
+
+    // Hashed build assets (filename changes whenever content does) — safe to
+    // cache forever, and never need CDN invalidation since old URLs are
+    // simply abandoned rather than overwritten.
+    new s3deploy.BucketDeployment(this, "DeployHashedAssets", {
+      sources: [siteAsset],
       destinationBucket: siteBucket,
+      include: ["_astro/*"],
+      exclude: ["*"],
+      cacheControl: [
+        s3deploy.CacheControl.setPublic(),
+        s3deploy.CacheControl.maxAge(Duration.days(365)),
+        s3deploy.CacheControl.immutable(),
+      ],
+      prune: false,
+    });
+
+    // Everything else (HTML, favicon, fonts, public/ scripts and images)
+    // reuses the same filename across deploys, so it must always revalidate
+    // against the origin rather than being cached by the browser — this is
+    // what was previously missing and caused deployed changes to appear
+    // invisible until a hard refresh.
+    new s3deploy.BucketDeployment(this, "DeploySite", {
+      sources: [siteAsset],
+      destinationBucket: siteBucket,
+      exclude: ["_astro/*"],
+      cacheControl: [
+        s3deploy.CacheControl.noCache(),
+        s3deploy.CacheControl.mustRevalidate(),
+      ],
+      prune: false,
       distribution,
       distributionPaths: ["/*"],
     });
