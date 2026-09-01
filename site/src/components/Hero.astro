@@ -3,14 +3,23 @@
 
 <section id="profile" class="hero">
   <div class="reveal terminal" style="--delay:0">
-    <div class="terminal-chrome" aria-hidden="true"><span></span><span></span><span></span></div>
-    <p class="terminal-line">
-      <span class="prompt">$</span><span class="cmd" data-typewriter>whoami</span><span class="cursor"></span>
-    </p>
-    <h1 class="terminal-line output">
-      Zhanbolot Eraliev
-      <span class="loc">Woodinville, WA</span>
-    </h1>
+    <div class="terminal-titlebar" aria-hidden="true">
+      <div class="traffic-lights">
+        <span class="light light-red"></span>
+        <span class="light light-yellow"></span>
+        <span class="light light-green"></span>
+      </div>
+      <span class="terminal-title">bash</span>
+    </div>
+    <div class="terminal-body">
+      <p class="terminal-line">
+        <span class="prompt">$</span><span class="cmd" data-typewriter>whoami</span><span class="cursor"></span>
+      </p>
+      <h1 class="terminal-line output">
+        Zhanbolot Eraliev
+        <span class="loc">Woodinville, WA</span>
+      </h1>
+    </div>
   </div>
 
   <script is:inline src="/scripts/whoami.js" defer></script>
@@ -61,22 +70,54 @@
     background: #1b2b38;
     border: 1px solid #33475a;
     border-radius: 0.6rem;
-    padding: 1rem 1.25rem 1.25rem;
     margin-bottom: 1.75rem;
     box-shadow: 0 8px 30px -12px rgb(0 0 0 / 0.35);
+    overflow: hidden;
   }
 
-  .terminal-chrome {
+  .terminal-titlebar {
+    position: relative;
     display: flex;
-    gap: 0.4rem;
-    margin-bottom: 0.9rem;
+    align-items: center;
+    padding: 0.7rem 1rem;
+    border-bottom: 1px solid #33475a;
   }
 
-  .terminal-chrome span {
-    width: 9px;
-    height: 9px;
+  .traffic-lights {
+    display: flex;
+    gap: 0.45rem;
+  }
+
+  .light {
+    width: 11px;
+    height: 11px;
     border-radius: 50%;
-    background: #33475a;
+  }
+
+  .light-red {
+    background: #ff5f56;
+  }
+
+  .light-yellow {
+    background: #ffbd2e;
+  }
+
+  .light-green {
+    background: #27c93f;
+  }
+
+  .terminal-title {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.02em;
+    color: #8996ac;
+  }
+
+  .terminal-body {
+    padding: 1rem 1.25rem 1.25rem;
   }
 
   .terminal-line {
