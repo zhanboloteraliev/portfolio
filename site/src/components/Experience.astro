@@ -15,11 +15,12 @@ const hooks = [
 ];
 ---
 
-<section id="evidence" class="evidence">
-  <h2>Evidence</h2>
+<section id="experience" class="experience">
+  <h2>Experience</h2>
   <div class="grid">
     <div class="block">
-      <h3>Technical</h3>
+      <h3>CodePath CYB102 Fellowship</h3>
+      <p class="meta">Cybersecurity incident response · June – August 2026</p>
       <ul>
         {
           hooks.map((h) => (
@@ -30,7 +31,6 @@ const hooks = [
           ))
         }
       </ul>
-      <a href="/resume" class="more">Full breakdown on résumé →</a>
     </div>
 
     <div class="block">
@@ -54,7 +54,7 @@ const hooks = [
 </section>
 
 <style>
-  .evidence {
+  .experience {
     padding-block: 2rem;
     max-width: 40rem;
   }
@@ -95,9 +95,16 @@ const hooks = [
     color: var(--color-route);
   }
 
+  .meta {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    opacity: 0.6;
+    margin: -0.5rem 0 0.9rem;
+  }
+
   ul {
     list-style: none;
-    margin: 0 0 0.9rem;
+    margin: 0;
     padding: 0;
     display: flex;
     flex-direction: column;
@@ -124,16 +131,5 @@ const hooks = [
     line-height: 1.55;
     opacity: 0.85;
     margin: 0;
-  }
-
-  .more {
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    color: var(--color-route);
-    text-decoration: none;
-  }
-
-  .more:hover {
-    text-decoration: underline;
   }
 </style>
