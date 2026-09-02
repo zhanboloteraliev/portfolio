@@ -170,12 +170,20 @@ export class SiteStack extends Stack {
 
     const siteAsset = s3deploy.Source.asset(path.join(__dirname, "..", "site", "dist"));
 
-    // Deploys the full site tree with prune enabled, so files removed from
-    // a build (an old page, a swapped-out image) actually get deleted from
-    // the bucket instead of lingering forever and still being served.
-    // Cache-control here applies to everything, including _astro/* — that
-    // gets overridden below by a second, later deployment.
-    const deploySite = new s3deploy.BucketDeployment(this, "DeploySite", {
+    // Single deployment for the whole tree, with prune enabled so files
+    // removed from a build (an old page, a swapped-out image) actually get
+    // deleted from the bucket instead of lingering forever and still being
+    // served. Cache-control is uniformly no-cache/must-revalidate,
+    // including for the hashed _astro/* assets: a two-tier scheme (long,
+    // immutable caching for hashed assets, no-cache for everything else)
+    // was tried and reverted — a second BucketDeployment meant to override
+    // cache-control just for _astro/* silently failed to apply whenever a
+    // deploy didn't change those files' content, because `aws s3 sync`
+    // skips re-uploading byte-identical files and never touches their
+    // metadata. Revalidation on every request is a cheap 304 for
+    // content-hashed assets, so the correctness/complexity trade-off isn't
+    // worth it for a site this size.
+    new s3deploy.BucketDeployment(this, "DeploySite", {
       sources: [siteAsset],
       destinationBucket: siteBucket,
       cacheControl: [
@@ -186,27 +194,6 @@ export class SiteStack extends Stack {
       distribution,
       distributionPaths: ["/*"],
     });
-
-    // Re-uploads just the hashed build assets (filename changes whenever
-    // content does) with a long, immutable cache lifetime — safe, since old
-    // URLs are simply abandoned rather than overwritten, and they never
-    // need CDN invalidation. Runs after DeploySite so this cache-control is
-    // the final word for these keys; prune stays off since this deployment
-    // only ever sees a subset of the tree and would otherwise delete
-    // everything DeploySite just uploaded.
-    const deployHashedAssets = new s3deploy.BucketDeployment(this, "DeployHashedAssets", {
-      sources: [siteAsset],
-      destinationBucket: siteBucket,
-      include: ["_astro/*"],
-      exclude: ["*"],
-      cacheControl: [
-        s3deploy.CacheControl.setPublic(),
-        s3deploy.CacheControl.maxAge(Duration.days(365)),
-        s3deploy.CacheControl.immutable(),
-      ],
-      prune: false,
-    });
-    deployHashedAssets.node.addDependency(deploySite);
 
     new CfnOutput(this, "NameServers", {
       value: Fn.join(", ", zone.hostedZoneNameServers as string[]),
