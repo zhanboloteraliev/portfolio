@@ -170,10 +170,31 @@ export class SiteStack extends Stack {
 
     const siteAsset = s3deploy.Source.asset(path.join(__dirname, "..", "site", "dist"));
 
-    // Hashed build assets (filename changes whenever content does) — safe to
-    // cache forever, and never need CDN invalidation since old URLs are
-    // simply abandoned rather than overwritten.
-    new s3deploy.BucketDeployment(this, "DeployHashedAssets", {
+    // Deploys the full site tree with prune enabled, so files removed from
+    // a build (an old page, a swapped-out image) actually get deleted from
+    // the bucket instead of lingering forever and still being served.
+    // Cache-control here applies to everything, including _astro/* — that
+    // gets overridden below by a second, later deployment.
+    const deploySite = new s3deploy.BucketDeployment(this, "DeploySite", {
+      sources: [siteAsset],
+      destinationBucket: siteBucket,
+      cacheControl: [
+        s3deploy.CacheControl.noCache(),
+        s3deploy.CacheControl.mustRevalidate(),
+      ],
+      prune: true,
+      distribution,
+      distributionPaths: ["/*"],
+    });
+
+    // Re-uploads just the hashed build assets (filename changes whenever
+    // content does) with a long, immutable cache lifetime — safe, since old
+    // URLs are simply abandoned rather than overwritten, and they never
+    // need CDN invalidation. Runs after DeploySite so this cache-control is
+    // the final word for these keys; prune stays off since this deployment
+    // only ever sees a subset of the tree and would otherwise delete
+    // everything DeploySite just uploaded.
+    const deployHashedAssets = new s3deploy.BucketDeployment(this, "DeployHashedAssets", {
       sources: [siteAsset],
       destinationBucket: siteBucket,
       include: ["_astro/*"],
@@ -185,24 +206,7 @@ export class SiteStack extends Stack {
       ],
       prune: false,
     });
-
-    // Everything else (HTML, favicon, fonts, public/ scripts and images)
-    // reuses the same filename across deploys, so it must always revalidate
-    // against the origin rather than being cached by the browser — this is
-    // what was previously missing and caused deployed changes to appear
-    // invisible until a hard refresh.
-    new s3deploy.BucketDeployment(this, "DeploySite", {
-      sources: [siteAsset],
-      destinationBucket: siteBucket,
-      exclude: ["_astro/*"],
-      cacheControl: [
-        s3deploy.CacheControl.noCache(),
-        s3deploy.CacheControl.mustRevalidate(),
-      ],
-      prune: false,
-      distribution,
-      distributionPaths: ["/*"],
-    });
+    deployHashedAssets.node.addDependency(deploySite);
 
     new CfnOutput(this, "NameServers", {
       value: Fn.join(", ", zone.hostedZoneNameServers as string[]),
