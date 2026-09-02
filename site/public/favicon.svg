@@ -1,4 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <rect width="32" height="32" fill="#101821"/>
-  <rect x="12" y="12" width="8" height="8" fill="none" stroke="#1B4DD1" stroke-width="3"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Dark terminal background with slight rounded corners -->
+  <rect width="100" height="100" rx="16" fill="#0D1117" />
+
+  <!-- Terminal Green Monospace Text -->
+  <text x="50" y="55"
+        font-family="'Courier New', Courier, monospace"
+        font-size="42"
+        font-weight="bold"
+        fill="#00FF41"
+        text-anchor="middle"
+        dominant-baseline="middle">>ZE</text>
 </svg>
