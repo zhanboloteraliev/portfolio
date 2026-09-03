@@ -2,13 +2,13 @@
 @import "./fonts.css";
 
 @theme {
-  --color-ink: #e7edf5;
-  --color-paper: #0d1621;
-  --color-panel: #16212e;
-  --color-rule: #2a3a4a;
-  --color-route: #5b8dff;
-  --color-relay: #34d399;
-  --color-flare: #f0973d;
+  --color-ink: #101821;
+  --color-paper: #e6f2ff;
+  --color-panel: #ffffff;
+  --color-rule: #dce3eb;
+  --color-route: #1b4dd1;
+  --color-relay: #0b6e5f;
+  --color-flare: #a6501a;
 
   --font-display: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
@@ -16,7 +16,7 @@
 }
 
 html {
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 body {
