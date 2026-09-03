@@ -13,12 +13,19 @@
     </div>
     <div class="terminal-body">
       <p class="terminal-line">
-        <span class="prompt">~$</span><span class="cmd" data-typewriter>whoami</span><span class="cursor"></span>
+        <span class="prompt">~$</span><span class="cmd" data-typewriter>whoami</span>
       </p>
       <h1 class="terminal-line output">
         <span class="name" data-typewriter>zhanbolot (john) eraliev</span>
         <span class="loc" data-typewriter>Greater Seattle Area, WA</span>
       </h1>
+      <p class="terminal-line role-cmd">
+        <span class="prompt">~$</span><span class="cmd" data-typewriter>cat role.txt</span>
+      </p>
+      <p class="terminal-line role-output" data-typewriter>Cloud Support Associate · Summer 2027</p>
+      <p class="terminal-line">
+        <span class="prompt">~$</span><span class="cursor"></span>
+      </p>
     </div>
   </div>
 
@@ -129,6 +136,18 @@
     text-transform: lowercase;
     color: #33ff66;
     margin-top: 0.5rem;
+  }
+
+  .role-cmd {
+    margin-top: 0.9rem;
+  }
+
+  .role-output {
+    margin-top: 0.35rem;
+    font-family: var(--font-mono);
+    font-weight: 500;
+    font-size: 0.9375rem;
+    color: #33ff66;
   }
 
   @keyframes blink {
