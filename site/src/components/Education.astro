@@ -9,7 +9,6 @@ const schools = [
   {
     name: "Lake Washington Institute of Technology",
     logo: "/assets/logos/lwtech.png",
-    when: "Transferred 2026",
     lines: ["AAS, Computer Science"],
     gpa: "GPA: 3.79 / 4.0",
     honors: "Magna Cum Laude",
@@ -25,10 +24,7 @@ const schools = [
         <div class="entry">
           <img src={s.logo} alt="" width="44" height="44" class="logo" />
           <div class="entry-body">
-            <div class="entry-head">
-              <h3>{s.name}</h3>
-              {s.when && <span class="when">{s.when}</span>}
-            </div>
+            <h3>{s.name}</h3>
             {s.lines.map((line) => (
               <p>{line}</p>
             ))}
@@ -86,27 +82,11 @@ const schools = [
     min-width: 0;
   }
 
-  .entry-head {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 0.5rem;
-    margin-bottom: 0.25rem;
-  }
-
   h3 {
     font-family: var(--font-display);
     font-weight: 600;
     font-size: 0.9375rem;
-    margin: 0;
-  }
-
-  .when {
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    opacity: 0.6;
-    white-space: nowrap;
+    margin: 0 0 0.25rem;
   }
 
   p {
@@ -127,10 +107,11 @@ const schools = [
   .badge-shine {
     display: inline-block;
     margin-top: 0.3rem;
-    font-family: var(--font-mono);
-    font-weight: 600;
+    font-family: var(--font-sans);
+    font-weight: 700;
     font-size: 1rem;
     letter-spacing: 0.02em;
+    text-transform: uppercase;
     color: var(--color-route);
     background-image: linear-gradient(
       100deg,
