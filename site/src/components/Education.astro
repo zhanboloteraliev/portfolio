@@ -3,15 +3,20 @@ const schools = [
   {
     name: "Central Washington University",
     logo: "/assets/logos/cwu.png",
+    when: "2026 – 2028",
     lines: ["Bachelor of Science, Computer Science · Minor in Mathematics"],
     badge: "Graduating 2028",
+    badgeAnimated: true,
   },
   {
     name: "Lake Washington Institute of Technology",
     logo: "/assets/logos/lwtech.png",
+    when: "2024 – 2026",
     lines: ["AAS, Computer Science"],
-    gpa: "GPA: 3.79 / 4.0",
     honors: "Magna Cum Laude",
+    gpa: "3.79 / 4.0",
+    badge: "Graduated",
+    badgeAnimated: false,
   },
 ];
 ---
@@ -22,15 +27,27 @@ const schools = [
     {
       schools.map((s) => (
         <div class="entry">
-          <img src={s.logo} alt="" width="44" height="44" class="logo" />
+          <img src={s.logo} alt="" width="52" height="52" class="logo" />
           <div class="entry-body">
-            <h3>{s.name}</h3>
+            <div class="entry-head">
+              <h3>{s.name}</h3>
+              <span class="when">{s.when}</span>
+            </div>
             {s.lines.map((line) => (
               <p>{line}</p>
             ))}
-            {s.gpa && <p class="gpa">{s.gpa}</p>}
-            {s.honors && <p class="honors">{s.honors}</p>}
-            {s.badge && <span class="badge-shine">{s.badge}</span>}
+            {(s.honors || s.gpa) && (
+              <p class="meta">
+                {s.honors}
+                {s.honors && s.gpa && " · "}
+                {s.gpa && <strong>GPA {s.gpa}</strong>}
+              </p>
+            )}
+            {s.badge && (
+              <span class={s.badgeAnimated ? "badge-shine" : "badge-static"}>
+                {s.badge}
+              </span>
+            )}
           </div>
         </div>
       ))
@@ -64,15 +81,15 @@ const schools = [
   .entry {
     display: flex;
     align-items: flex-start;
-    gap: 0.9rem;
+    gap: 1rem;
     border-top: 1px solid var(--color-rule);
     padding-top: 1.1rem;
   }
 
   .logo {
     flex-shrink: 0;
-    width: 44px;
-    height: 44px;
+    width: 52px;
+    height: 52px;
     aspect-ratio: 1 / 1;
     border-radius: 0.5rem;
     object-fit: cover;
@@ -82,11 +99,26 @@ const schools = [
     min-width: 0;
   }
 
+  .entry-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+
   h3 {
     font-family: var(--font-display);
     font-weight: 600;
     font-size: 0.9375rem;
     margin: 0 0 0.25rem;
+  }
+
+  .when {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    opacity: 0.55;
+    white-space: nowrap;
   }
 
   p {
@@ -95,23 +127,32 @@ const schools = [
     margin: 0.2rem 0 0;
   }
 
-  .gpa {
+  .meta {
+    font-size: 0.9375rem;
+    opacity: 0.85;
+  }
+
+  .meta strong {
     font-weight: 700;
+    opacity: 1;
   }
 
-  .honors {
-    opacity: 0.75;
-    font-style: italic;
-  }
-
-  .badge-shine {
+  .badge-shine,
+  .badge-static {
     display: inline-block;
-    margin-top: 0.3rem;
+    margin-top: 0.4rem;
     font-family: var(--font-sans);
     font-weight: 700;
     font-size: 1rem;
     letter-spacing: 0.02em;
     text-transform: uppercase;
+  }
+
+  .badge-static {
+    color: var(--color-route);
+  }
+
+  .badge-shine {
     color: var(--color-route);
     background-image: linear-gradient(
       100deg,
