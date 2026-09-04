@@ -1,44 +1,49 @@
 ---
-const inProgress = [
-  {
-    name: "Microsoft Certified: Azure Administrator Associate (AZ-104)",
-    status: "In progress",
-    statusClass: "status-progress",
-  },
-];
 ---
 
 <section id="certs" class="certs">
   <h2>Certifications</h2>
 
-  <a
-    href="https://www.credly.com/badges/f485fabc-4b43-4383-b4df-69ab72ca26cc"
-    target="_blank"
-    rel="noopener noreferrer"
-    class="aws-badge"
-  >
-    <img
-      src="/assets/badges/aws-tile.webp"
-      alt=""
-      width="64"
-      height="64"
-      loading="lazy"
-    />
-    <span class="aws-badge-text">
-      AWS Solutions Architect &ndash; Associate
-      <span class="sr-only">— verify on Credly (opens in new tab)</span>
-    </span>
-  </a>
-
   <div class="entries">
-    {
-      inProgress.map((c) => (
-        <div class="entry">
-          <h3>{c.name}</h3>
-          <span class={`when ${c.statusClass}`}>{c.status}</span>
+    <a
+      href="https://www.credly.com/badges/f485fabc-4b43-4383-b4df-69ab72ca26cc"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="entry"
+    >
+      <img
+        src="/assets/badges/aws-tile.webp"
+        alt=""
+        width="52"
+        height="52"
+        class="logo"
+        loading="lazy"
+      />
+      <div class="entry-body">
+        <div class="entry-head">
+          <h3 class="shine">AWS Solutions Architect &ndash; Associate</h3>
+          <span class="when">2026</span>
         </div>
-      ))
-    }
+        <span class="sr-only">— verify on Credly (opens in new tab)</span>
+      </div>
+    </a>
+
+    <div class="entry">
+      <img
+        src="/assets/badges/ms-tile.png"
+        alt=""
+        width="52"
+        height="52"
+        class="logo"
+        loading="lazy"
+      />
+      <div class="entry-body">
+        <div class="entry-head">
+          <h3>Microsoft Certified: Azure Fundamentals</h3>
+          <span class="when status-progress">In process</span>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -60,25 +65,50 @@ const inProgress = [
     margin: 0 0 1.25rem;
   }
 
-  .aws-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.6rem;
-    text-decoration: none;
-    margin-bottom: 0.9rem;
+  .entries {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
   }
 
-  .aws-badge img {
+  .entry {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .logo {
+    flex-shrink: 0;
     width: 52px;
     height: 52px;
+    aspect-ratio: 1 / 1;
     border-radius: 0.5rem;
+    object-fit: cover;
   }
 
-  .aws-badge-text {
-    font-family: var(--font-sans);
-    font-weight: 700;
-    font-size: 1rem;
-    letter-spacing: 0.02em;
+  .entry-body {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .entry-head {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: baseline;
+    gap: 0.25rem 0.75rem;
+  }
+
+  h3 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 0.9375rem;
+    margin: 0;
+    color: var(--color-ink);
+  }
+
+  .shine {
     color: var(--color-route);
     background-image: linear-gradient(
       100deg,
@@ -104,36 +134,16 @@ const inProgress = [
     }
   }
 
-  .entries {
-    display: flex;
-    flex-direction: column;
-    gap: 0.9rem;
-  }
-
-  .entry {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 0.5rem;
-    border-top: 1px solid var(--color-rule);
-    padding-top: 0.9rem;
-  }
-
-  h3 {
-    font-family: var(--font-display);
-    font-weight: 600;
-    font-size: 0.9375rem;
-    margin: 0;
-  }
-
   .when {
     font-family: var(--font-mono);
     font-size: 0.75rem;
+    opacity: 0.55;
     white-space: nowrap;
+    text-align: right;
   }
 
   .status-progress {
     color: var(--color-flare);
+    opacity: 1;
   }
 </style>
