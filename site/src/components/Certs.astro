@@ -18,7 +18,7 @@ const inProgress = [
     class="aws-badge"
   >
     <img
-      src="/assets/badges/aws-smile.png"
+      src="/assets/badges/aws-tile.webp"
       alt=""
       width="64"
       height="64"
@@ -61,65 +61,47 @@ const inProgress = [
   }
 
   .aws-badge {
-    position: relative;
-    display: flex;
+    display: inline-flex;
     align-items: center;
     gap: 0.6rem;
-    padding: 0.35rem 0.75rem 0.35rem 0.35rem;
-    background: #1b2b38;
-    border: 1px solid #33475a;
-    border-radius: 0.5rem;
     text-decoration: none;
-    color: #e7edf5;
-    overflow: hidden;
-    transition: border-color 0.15s ease;
     margin-bottom: 0.9rem;
-  }
-
-  .aws-badge:hover {
-    border-color: var(--color-route);
-  }
-
-  .aws-badge::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 55%;
-    height: 100%;
-    background: linear-gradient(
-      100deg,
-      transparent 20%,
-      rgb(255 255 255 / 0.5) 50%,
-      transparent 80%
-    );
-    transform: skewX(-20deg);
-    animation: aws-badge-shine 3.5s linear infinite;
-    pointer-events: none;
-  }
-
-  @keyframes aws-badge-shine {
-    0% {
-      left: -100%;
-    }
-    55% {
-      left: 140%;
-    }
-    100% {
-      left: 140%;
-    }
   }
 
   .aws-badge img {
     width: 52px;
     height: 52px;
+    border-radius: 0.5rem;
   }
 
   .aws-badge-text {
     font-family: var(--font-sans);
-    font-weight: 600;
-    font-size: 0.875rem;
-    line-height: 1.3;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 0.02em;
+    color: var(--color-route);
+    background-image: linear-gradient(
+      100deg,
+      var(--color-route) 0%,
+      var(--color-route) 40%,
+      #8fb3ff 50%,
+      var(--color-route) 60%,
+      var(--color-route) 100%
+    );
+    background-size: 300% 100%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shine 3.5s linear infinite;
+  }
+
+  @keyframes shine {
+    0% {
+      background-position: 100% 0;
+    }
+    100% {
+      background-position: -200% 0;
+    }
   }
 
   .entries {
