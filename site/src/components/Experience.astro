@@ -1,55 +1,41 @@
 ---
-const hooks = [
+const jobs = [
   {
-    title: "Packet-level network troubleshooting",
-    detail: "Wireshark, SMTP/DNS/HTTP",
-  },
-  {
-    title: "Log-driven root-cause analysis",
-    detail: "Splunk + SPL, the CloudWatch skillset",
-  },
-  {
-    title: "Linux & web-server administration",
-    detail: "Ubuntu, nginx, Bash, auditd",
+    name: "kundooku",
+    url: "https://kundooku.com",
+    shine: true,
+    role: "Founder & Sole Engineer",
+    description:
+      "Architected and operate a live production platform on Cloudflare's global cloud infrastructure (serverless compute, edge CDN, DNS), owning everything from deployment pipeline to real-user incident response.",
   },
 ];
 ---
 
 <section id="experience" class="experience">
   <h2>Experience</h2>
-  <div class="grid">
-    <div class="block">
-      <h3>CodePath CYB102 Fellowship</h3>
-      <p class="meta">Cybersecurity incident response · June – August 2026</p>
-      <ul>
-        {
-          hooks.map((h) => (
-            <li>
-              <span class="hook-title">{h.title}</span>
-              <span class="hook-detail">{h.detail}</span>
-            </li>
-          ))
-        }
-      </ul>
-    </div>
-
-    <div class="block">
-      <h3>Leadership</h3>
-      <p>
-        Co-founder and president of <strong>KurultAI</strong>, a Kyrgyz tech
-        community club I helped start at LWTech. Most recently: 1st place,
-        Polymarket track, QuackHacks 2.0.
-      </p>
-    </div>
-
-    <div class="block">
-      <h3>Customer-facing</h3>
-      <p>
-        Three years at my family's clothing stall in Dordoi Bazaar, Bishkek —
-        reading what a customer actually needed, across a language barrier,
-        with no script to fall back on.
-      </p>
-    </div>
+  <div class="entries">
+    {
+      jobs.map((job) => (
+        <a
+          href={job.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="entry"
+        >
+          <div class="entry-body">
+            <div class="entry-head">
+              <h3 class={job.shine ? "shine" : undefined}>{job.name}</h3>
+            </div>
+            <p>
+              <strong>{job.role}</strong> — {job.description}
+            </p>
+            <span class="sr-only">
+              — visit {job.name} (opens in new tab)
+            </span>
+          </div>
+        </a>
+      ))
+    }
   </div>
 </section>
 
@@ -71,67 +57,68 @@ const hooks = [
     margin: 0 0 1.25rem;
   }
 
-  .grid {
-    display: grid;
-    grid-template-columns: 1fr;
+  .entries {
+    display: flex;
+    flex-direction: column;
     gap: 1.25rem;
   }
 
-  @media (min-width: 640px) {
-    .grid {
-      grid-template-columns: repeat(3, 1fr);
-    }
+  .entry {
+    display: block;
+    border-top: 1px solid var(--color-rule);
+    padding-top: 1.1rem;
+    text-decoration: none;
+    color: inherit;
   }
 
-  .block {
-    border: 1px solid var(--color-rule);
-    border-radius: 0.5rem;
-    background: var(--color-panel);
-    padding: 1.1rem 1.15rem;
+  .entry-body {
+    min-width: 0;
+  }
+
+  .entry-head {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: baseline;
+    gap: 0.25rem 0.75rem;
   }
 
   h3 {
     font-family: var(--font-display);
     font-weight: 600;
     font-size: 0.9375rem;
-    margin: 0 0 0.75rem;
-    color: var(--color-route);
-  }
-
-  .meta {
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    opacity: 0.6;
-    margin: -0.5rem 0 0.9rem;
-  }
-
-  ul {
-    list-style: none;
     margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.6rem;
+    color: var(--color-ink);
   }
 
-  .hook-title {
-    display: block;
-    font-size: 0.875rem;
-    font-weight: 500;
-    line-height: 1.35;
-  }
-
-  .hook-detail {
-    display: block;
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    opacity: 0.6;
-    margin-top: 0.1rem;
-  }
-
-  .block p {
-    font-size: 0.9375rem;
+  p {
+    font-size: 1rem;
     line-height: 1.55;
-    margin: 0;
+    margin: 0.35rem 0 0;
+  }
+
+  .shine {
+    color: var(--color-route);
+    background-image: linear-gradient(
+      100deg,
+      var(--color-route) 0%,
+      var(--color-route) 40%,
+      #8fb3ff 50%,
+      var(--color-route) 60%,
+      var(--color-route) 100%
+    );
+    background-size: 300% 100%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shine 3.5s linear infinite;
+  }
+
+  @keyframes shine {
+    0% {
+      background-position: 100% 0;
+    }
+    100% {
+      background-position: -200% 0;
+    }
   }
 </style>
