@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="128" height="128">
+  <defs>
+    <!-- Walmart Blue Gradient -->
+    <linearGradient id="bgWalmartBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0071CE" /> <!-- Walmart Light Blue -->
+      <stop offset="100%" stop-color="#005CB8" /> <!-- Slightly deeper blue for depth -->
+    </linearGradient>
+  </defs>
+
+  <!-- Rounded Background -->
+  <rect width="120" height="120" rx="28" fill="url(#bgWalmartBlue)" />
+
+  <!-- Check Mark: Walmart Spark Yellow -->
+  <path d="M 36 49 L 52 67 L 86 33" fill="none" stroke="#FFC220" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" />
+
+  <!-- Underline: Walmart Spark Yellow -->
+  <line x1="34" y1="87" x2="86" y2="87" stroke="#FFC220" stroke-width="12" stroke-linecap="round" />
+</svg>

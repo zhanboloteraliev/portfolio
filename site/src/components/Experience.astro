@@ -1,8 +1,9 @@
 ---
 const jobs = [
   {
-    name: "kundooku",
+    name: "Kundooku",
     url: "https://kundooku.com",
+    logo: "/assets/logos/kundooku.svg",
     shine: true,
     role: "Founder & Sole Engineer",
     description:
@@ -22,6 +23,14 @@ const jobs = [
           rel="noopener noreferrer"
           class="entry"
         >
+          <img
+            src={job.logo}
+            alt=""
+            width="52"
+            height="52"
+            class="logo"
+            loading="lazy"
+          />
           <div class="entry-body">
             <div class="entry-head">
               <h3 class={job.shine ? "shine" : undefined}>{job.name}</h3>
@@ -64,14 +73,26 @@ const jobs = [
   }
 
   .entry {
-    display: block;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
     border-top: 1px solid var(--color-rule);
     padding-top: 1.1rem;
     text-decoration: none;
     color: inherit;
   }
 
+  .logo {
+    flex-shrink: 0;
+    width: 52px;
+    height: 52px;
+    aspect-ratio: 1 / 1;
+    border-radius: 0.5rem;
+    object-fit: cover;
+  }
+
   .entry-body {
+    flex: 1;
     min-width: 0;
   }
 
